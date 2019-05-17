@@ -1,10 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<title>First App Mythrill</title>
 </head>
 <body>
 
+
+
+	<script src="https://unpkg.com/mithril/mithril.js"></script>
+	<script>	
+
+var MesPetition = {
+	    list: [],
+	    loadList: function() {
+	        return m.request({
+	            method: "GET",
+	            url: "https://sobike44.appspot.com/_ah/api/myApi/v1/entity/titi"
+	        })
+	        .then(function(result) {
+	            Score.list = result.items
+	        	console.log("got:",result.items)
+	        	m.redraw(true) // force
+	        })
+	    },
+	    current: {},
+	    save: function() {
+	    	console.log("saving...",Score.current)
+	        return m.request({
+	            method: "POST",
+	            url: "https://sobike44.appspot.com/_ah/api/myApi/v1/addScore/"+Score.current.score+"/"+Score.current.name
+	        })
+	        .then(function(result) {
+	        	console.log("got:",result)
+	        	Score.loadList()
+	        })
+	    }
+	}
+
+
+
+
+
+
+
+m.mount(document.body, MesPetition)	
+
+
+</script>
 </body>
 </html>
