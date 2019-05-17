@@ -2,15 +2,36 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>First App Mythrill</title>
+<title>Accueil Tiny Pet</title>
 </head>
 <body>
 
-
-
 	<script src="https://unpkg.com/mithril/mithril.js"></script>
-	<script>	
 
+    <script>
+    var root = document.body
+
+    m.render(root, [
+        m("main", [
+            m("h1", {class: "title"}, "Premier page"),
+            m("button", "My petitions"),
+            m("button", "Signed"),
+            m("button", "Créer"),
+        ])
+    ])
+    
+
+/* styles.css */
+body,.input,.button {font:normal 16px Verdana;margin:0;}
+
+.user-list {list-style:none;margin:0 0 10px;padding:0;}
+.user-list-item {background:#fafafa;border:1px solid #ddd;color:#333;display:block;margin:0 0 1px;padding:8px 15px;text-decoration:none;}
+.user-list-item:hover {text-decoration:underline;}
+
+.label {display:block;margin:0 0 5px;}
+.input {border:1px solid #ddd;border-radius:3px;box-sizing:border-box;display:block;margin:0 0 10px;padding:10px 15px;width:100%;}
+.button {background:#eee;border:1px
+	
 var TopPetition = {
 	    list: [],
 	    loadList: function() {
