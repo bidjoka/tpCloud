@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>First App Mythrill</title>
+</head>
+<body>
+
+
+
+	<script src="https://unpkg.com/mithril/mithril.js"></script>
+	<script>	
+
+var Form = {
+		view: function() {
+	        return m("form", {
+	                onsubmit: function(e) {
+	                    e.preventDefault()
+	                    Score.save()
+	                }
+	            }, [
+	            m("label.label", "score"),
+	            m("input.input[type=int][placeholder=score]",{
+	                oninput: function (e) {Score.current.score=e.target.value},
+	                value: Score.current.score
+	            }),
+	            m("label.label", "name"),
+	            m("input.input[type=text][placeholder=name]", {
+	                oninput: function (e) {Score.current.name=e.target.value},
+	                value: Score.current.name
+	            }),
+	            m("button.button[type=submit]", "Save"),
+	        ])
+	    }
+}
+
+m.mount(document.body, Form)	
+
+
+</script>
+</body>
+</html>
