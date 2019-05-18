@@ -4,6 +4,7 @@ import com.googlecode.objectify.annotation.Cache;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 
+
 @Entity
 @Cache
 public class Petition {
@@ -13,6 +14,7 @@ public class Petition {
 	private String nom;
 	private String message;
 	private String posteur; 
+	
 	private Long nbSignataire;
 	
 	public Petition() {

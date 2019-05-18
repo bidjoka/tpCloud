@@ -2,28 +2,32 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>First App Mythrill</title>
+<title>Accueil</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-	<script src="https://unpkg.com/mithril/mithril.js"></script>
+    <script src="https://unpkg.com/mithril/mithril.js"></script>
+    
+
 	<script>	
 
-var TopPetition = {
+var Petition = {
 	    list: [],
 	    loadList: function() {
 	        return m.request({
 	            method: "GET",
-	            url: "'https://my-cloud-project-232813.appspot.com/_ah/api/MonApi/v1/entity/titi'"
+	            url: "'https://my-cloud-project-232813.appspot.com/_ah/api/MonApi/v1/Petition'"
 	        })
 	        .then(function(result) {
-	            Score.list = result.items
+	            Petition.list = result.items
 	        	console.log("got:",result.items)
 	        	m.redraw(true) // force
 	        })
 	    },
 	    current: {},
 	    save: function() {
-	    	console.log("saving...",Score.current)
+	    	console.log("saving...",Petition.current)
 	        return m.request({
 	            method: "POST",
 	            url: "https://my-cloud-project-232813.appspot.com/_ah/api/MonApi/v1/addScore/"+Score.current.score+"/"+Score.current.name
@@ -35,7 +39,7 @@ var TopPetition = {
 	    }
 	}
 
-m.mount(document.body, TopPetition)	
+m.mount(document.body, Petition)	
 
 </script>
 </body>

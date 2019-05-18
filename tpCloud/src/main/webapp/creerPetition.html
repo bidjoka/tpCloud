@@ -2,31 +2,31 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>First App Mythrill</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Creer ma petition</title>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-
-
 
 	<script src="https://unpkg.com/mithril/mithril.js"></script>
 	<script>	
 
-var FormCreation = {
+var Petition = {
 		view: function() {
 	        return m("form", {
 	                onsubmit: function(e) {
 	                    e.preventDefault()
-	                    Score.save()
+	                    Petition.save()
 	                }
 	            }, [
-	            m("label.label", "score"),
-	            m("input.input[type=int][placeholder=score]",{
-	                oninput: function (e) {Score.current.score=e.target.value},
+	            m("label", "nom"),
+	            m("input.input[type=text][placeholder=nom]",{
+	                oninput: function (e) {Petition.current.nom=e.target.value},
 	                value: Score.current.score
 	            }),
-	            m("label.label", "name"),
-	            m("input.input[type=text][placeholder=name]", {
-	                oninput: function (e) {Score.current.name=e.target.value},
+	            m("label", "name"),
+	            m("input.[type=text][placeholder=name]", {
+	                oninput: function (e) {Petition.current.name=e.target.value},
 	                value: Score.current.name
 	            }),
 	            m("button.button[type=submit]", "Save"),

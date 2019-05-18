@@ -2,27 +2,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>First App Mythrill</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Modifier ma petition</title>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-
-
 
 	<script src="https://unpkg.com/mithril/mithril.js"></script>
 	<script>	
 
-var FormModification = {
+var Form = {
 		view: function() {
 	        return m("form", {
 	                onsubmit: function(e) {
 	                    e.preventDefault()
-	                    Score.save()
+	                    Form.save()
 	                }
 	            }, [
-	            m("label.label", "score"),
-	            m("input.input[type=int][placeholder=score]",{
-	                oninput: function (e) {Score.current.score=e.target.value},
-	                value: Score.current.score
+	            m("label.label", "nom"),
+	            m("input.input[type=text][placeholder=nom]",{
+	                oninput: function (e) {Form.current.nom=e.target.value},
+	                value: Form.current.score
 	            }),
 	            m("label.label", "name"),
 	            m("input.input[type=text][placeholder=name]", {
@@ -34,7 +34,7 @@ var FormModification = {
 	    }
 }
 
-m.mount(document.body, FormModification)	
+m.mount(document.body, Form)	
 
 
 </script>
