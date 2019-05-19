@@ -9,53 +9,88 @@
 <body>
 
 	<script src="https://unpkg.com/mithril/mithril.js"></script>
-	<script>	
+	
+	<script>
 
-/*formulaire pour la pétition, il faut le corrigé et trouver un moyen de passer en paramètre 
-le nom de l'auteur*/
-var PetitionForm = {
-		view: function() {
-	        return m("form", {
-	                onsubmit: function(e) {
-	                    e.preventDefault()
-	                    Petition.save()
-	                }
-	            }, [
-	            m("label", "nom"),
-	            m("input.input[type=text][placeholder=nom]",{
-	                oninput: function (e) {Petition.current.nom=e.target.value},
-	                value: Score.current.score
-	            }),
-	            m("label", "message"),
-	            m("input.[type=text][placeholder=message]", {
-	                oninput: function (e) {Petition.current.message=e.target.value},
-	                value: Petition.current.message
-	            }),
-	            m("button.button[type=submit]", "Save"),
-	        ])
-	    }
-    }
-    
-    //à compléter pour intégration dans le header afin de permettre la déconnexion de l'auteur
-    var signout = {
-        
-    }
+    var root = document.body
 
-    //affichage du rendu total, il faut mettre le header
-    var affiche = {
-	    view: function() {
-	    	return m("main", [
-	            m("h1", {class: "title"}, "Créer votre pétition"),
-	            m("div", {id: "form"}, m(PetitionForm)),
-	            m("button", {onclick: function() {count++}}, count + " clicks"),
-
-	        ])
+   
+	var Petition = {
+	    list: [],
+	    loadList: function() {
+	        return m.request({
+	            method: "GET",
+	            url: "https://projetcloudm1.appspot.com/api/myApi/v1/listAllPetition",
+	            withCredentials: true,
+	        })
+	        .then(function(result) {
+	            Petition.list = result.data
+	        })
+	    }, 
+	    current: {},
+	    save: function() {
+	    	console.log("saving...",Petition.current)
+	        return m.request({
+	            method: "POST",
+	            //profile.getId() récupère l'ID du USER 
+	            url: "https://projetcloudm1.appspot.com/_ah/api/myApi/v1/addPetition?body="+Petition.current.body+"&title="+Petition.current.title,
+	            data: Petition.current,
+	            withCredentials: true, 
+	        })
+	        .then(function(result) {
+	        	console.log("got:",result)
+	        	Petition.loadList()
+	        })
 	    }
 	}
 
-m.mount(document.body, FormCreation)	
+    // formulaire pour poster une petition
+
+	 var PetitionFormulaire = {
+				view: function() {
+			        return m("form", {
+			                onsubmit: function(e) {
+			                    e.preventDefault()
+			                    Petition.save()
+			                    console.log("ici");
+			                }
+			            }, [
+			            m("label.label", "nom"),
+			            m("input.input[type=text][placeholder=Nom de la petition]",{
+			                oninput: function (e) {Petition.current.title=e.target.value},
+			                value: Petition.current.nom
+			            }),
+			            m("label.label", "corps"),
+			            m("input.input[typearea=text][style=width:600px; height:200px;][placeholder=Corps de la petition]", {
+			                oninput: function (e) {Petition.current.body=e.target.value},
+			                value: Petition.current.corps
+			            }),
+			            m("button.button[type=submit]", "Sauvegarder"),
+			        ])
+			    }
+		}
 
 
-</script>
+
+    
+
+	 var Affichage = {
+	 	    view: function() {
+	 	    	return m("main", [
+	 	            m("h1", {class: "title"}, "Soumettre une pétition"),
+	 	            m("a", {href:"accueil.html"}, "Revenir à l'écran d'acceuil"),
+	 	            m("a", {href:"index.html"}, "Revenir à la liste des fonctionnalités"),
+	 	            //m("a", {href:"listePetition.html"}, "Liste des petitions"),
+	 	            m("div", {id: "form"}, m(PetitionFormulaire)),
+	 	        ])
+	 	    }
+	 	}
+
+
+ 	m.mount(document.body, Affichage)	
+
+
+	</script>
+	
 </body>
 </html>

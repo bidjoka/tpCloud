@@ -8,21 +8,13 @@
     
 </head>
 <body>
-	<div class="g-signin2" data-onsuccess="onSignIn"></div>
-	<a href="#" onclick="signOut();">Sign out</a>
-	<script>
-	  function signOut() {
-	    var auth2 = gapi.auth2.getAuthInstance();
-	    auth2.signOut().then(function () {
-	      console.log('User signed out.');
-	    });
-	  }
-	</script>
+	
 
  <!--  Sign In Button -->
+<!-- <div class="g-signin2" data-onsuccess="onSignIn"></div>-->
+ <a href="#"><input type="button" name="Sign in" value="Sign in" onclick="onSignIn();"></a>
     <script>
       function onSignIn(googleUser) {
-        // Useful data for your client-side scripts:
         var profile = googleUser.getBasicProfile();
         console.log("ID: " + profile.getId()); // Don't send this directly to your server!
         console.log('Full Name: ' + profile.getName());
@@ -34,9 +26,11 @@
         var id_token = googleUser.getAuthResponse().id_token;
         console.log("ID Token: " + id_token);
       }
+      
     </script>
-      <!-- <!-- Sign out -->
-    <a href="index.html" onclick="signOut();">Sign out</a>
+      <!-- Sign out -->
+     <!-- <div class="g-signin2" data-onsuccess="signOut"></div>-->
+    <a href="index.html"><input type="button" name="Sign out" value="Sign out" onclick="signOut();"></a>
 	<script>
 	  function signOut() {
 	    var auth2 = gapi.auth2.getAuthInstance();
@@ -55,3 +49,5 @@
 
 </body>
 </html>
+
+
