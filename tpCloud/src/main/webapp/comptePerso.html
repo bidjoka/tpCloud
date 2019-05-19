@@ -31,7 +31,7 @@
             loadList: function() {
                 return m.request({
                     method: "GET",
-                    url: "https://sobike44.appspot.com/_ah/api/myApi/v1/entity/titi"
+                    url: "https://projetcloudm1.appspot.com/_ah/api/myApi/v1/entity/titi"
                 })
                 .then(function(result) {
                     Score.list = result.items
@@ -44,7 +44,7 @@
                 console.log("saving...",Score.current)
                 return m.request({
                     method: "POST",
-                    url: "https://sobike44.appspot.com/_ah/api/myApi/v1/addScore/"+Score.current.score+"/"+Score.current.name
+                    url: "https://projetcloudm1.appspot.com/_ah/api/myApi/v1/addScore/"+Score.current.score+"/"+Score.current.name
                 })
                 .then(function(result) {
                     console.log("got:",result)
@@ -52,8 +52,23 @@
                 })
             }
         }
+        
+        var Affiche ={
+        		 view: function() {
+     	 	    	return m("main", [
+     	 	            m("h1",  "Tiny Pet, site de petition en ligne"),
+     	 	           m("a", {href:"index.html"},class="glyphicon glyphicon-home",  "Accueil"),
+     	 	          //class="glyphicon glyphicon-home"
+     	 	            m("li",[m("a", {href:"index.html"}, "Liste des fonctionnalités disponibles"),]),
+     	 	             m("li",[m("a", {href:"creerPetition.html"}, "Créer une pétittion"),]),
+     	 	             m("li",[m("a", {href:"connexion.html"}, "Se connecter"),])
+     			     //   m("h1", {class: "title"}, "Trending petitions"),
+     	 	            m("div", {id: "box"}, m(PetitionView)),
+     	 	        ])
+     	 	    }
+        }
 
-    m.mount(document.body, MesPetition)	
+    m.mount(document.body, Affiche)	
 
 </script>
 </div>

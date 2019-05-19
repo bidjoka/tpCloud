@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Creer ma petition</title>
+<title>Créer ma petition</title>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -56,12 +56,12 @@
 			                }
 			            }, [
 			            m("label.label", "nom"),
-			            m("input.input[type=text][placeholder=Nom de la petition]",{
+			            m("input.input[type=textarea][style=width:400px; height:100px;][placeholder=Nom de la pétition]",{
 			                oninput: function (e) {Petition.current.title=e.target.value},
 			                value: Petition.current.nom
 			            }),
 			            m("label.label", "corps"),
-			            m("input.input[typearea=text][style=width:600px; height:200px;][placeholder=Corps de la petition]", {
+			            m("input.input[type=textarea][style=width:600px; height:200px;][placeholder=Corps de la pétition]", {
 			                oninput: function (e) {Petition.current.body=e.target.value},
 			                value: Petition.current.corps
 			            }),
@@ -77,15 +77,19 @@
 	 var Affichage = {
 	 	    view: function() {
 	 	    	return m("main", [
-	 	            m("h1", {class: "title"}, "Soumettre une pétition"),
-	 	            m("a", {href:"accueil.html"}, "Revenir à l'écran d'acceuil"),
-	 	            m("a", {href:"index.html"}, "Revenir à la liste des fonctionnalités"),
+	 	           m("h1", {class: "title"}, "Soumettre une pétition"),
+	 	           m("p", "Vous pouvez ici créer une nouvelle pétition."),
+	 	           m("p", "Cette dernière dois contenir un titre et un description de la pétition."),
+	 	           m("div", {id: "form"}, m(PetitionFormulaire)), 
+	 	           m("li",[m("a", {href:"accueil.html"}, "Revenir à l'écran d'acceuil"),]),
+	 	           m("li",[m("a", {href:"index.html"}, "Revenir à la liste des fonctionnalités"),]),
+	 	           
 	 	            //m("a", {href:"listePetition.html"}, "Liste des petitions"),
-	 	            m("div", {id: "form"}, m(PetitionFormulaire)),
+	 	            
 	 	        ])
 	 	    }
 	 	}
-
+   
 
  	m.mount(document.body, Affichage)	
 
