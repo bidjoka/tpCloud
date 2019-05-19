@@ -11,7 +11,9 @@
 	<script src="https://unpkg.com/mithril/mithril.js"></script>
 	<script>	
 
-var Petition = {
+/*formulaire pour la pétition, il faut le corrigé et trouver un moyen de passer en paramètre 
+le nom de l'auteur*/
+var PetitionForm = {
 		view: function() {
 	        return m("form", {
 	                onsubmit: function(e) {
@@ -24,15 +26,32 @@ var Petition = {
 	                oninput: function (e) {Petition.current.nom=e.target.value},
 	                value: Score.current.score
 	            }),
-	            m("label", "name"),
-	            m("input.[type=text][placeholder=name]", {
-	                oninput: function (e) {Petition.current.name=e.target.value},
-	                value: Score.current.name
+	            m("label", "message"),
+	            m("input.[type=text][placeholder=message]", {
+	                oninput: function (e) {Petition.current.message=e.target.value},
+	                value: Petition.current.message
 	            }),
 	            m("button.button[type=submit]", "Save"),
 	        ])
 	    }
-}
+    }
+    
+    //à compléter pour intégration dans le header afin de permettre la déconnexion de l'auteur
+    var signout = {
+        
+    }
+
+    //affichage du rendu total, il faut mettre le header
+    var affiche = {
+	    view: function() {
+	    	return m("main", [
+	            m("h1", {class: "title"}, "Créer votre pétition"),
+	            m("div", {id: "form"}, m(PetitionForm)),
+	            m("button", {onclick: function() {count++}}, count + " clicks"),
+
+	        ])
+	    }
+	}
 
 m.mount(document.body, FormCreation)	
 

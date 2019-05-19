@@ -13,7 +13,7 @@ public class Petition {
 	private Long id;
 	private String nom;
 	private String message;
-	private String posteur; 
+	private String auteur; 
 	
 	private Long nbSignataire;
 	
@@ -21,13 +21,11 @@ public class Petition {
 		
 	}
 	
-	public Petition(Long id, String nom, String message, Long signataire, String posteur) {
-		super();
-		this.id = id;
+	public Petition(String nom, String message, String posteur) {
+		
 		this.nom = nom;
 		this.message = message;
-		this.nbSignataire = signataire;
-		this.posteur = posteur;
+		this.auteur = posteur;
 	}
 
 	public Long getId() {
@@ -54,12 +52,12 @@ public class Petition {
 		this.message = message;
 	}
 
-	public String getPosteur() {
-		return posteur;
+	public String getAuteur() {
+		return auteur;
 	}
 
-	public void setPosteur(String posteur) {
-		this.posteur = posteur;
+	public void setPosteur(String auteur) {
+		this.auteur = auteur;
 	}
 
 	public Long getNbSignataire() {

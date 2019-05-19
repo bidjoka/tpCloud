@@ -10,7 +10,6 @@ import javax.annotation.Nullable;
 
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
-import com.google.api.server.spi.config.ApiMethod.HttpMethod;
 import com.google.api.server.spi.config.Named;
 import com.google.api.server.spi.response.CollectionResponse;
 import com.google.api.server.spi.response.NotFoundException;
@@ -27,11 +26,7 @@ public class ApiEndpoint {
 	
 	private static final int DEFAULT_LIST_LIMIT = 100;
 	
-	@ApiMethod(
-			name = "trouver",
-	        path = "petition/{id}",
-	        httpMethod = HttpMethod.GET
-	    )
+	@ApiMethod(name = "trouver")
 	public Petition trouverPetition(@Named("id") String id) throws NotFoundException {
 
 		Petition pet = ofy().load().type(Petition.class).id(id).now();
@@ -41,31 +36,24 @@ public class ApiEndpoint {
         return pet;
     }
 	
-	@ApiMethod(
-			name = "creer",
-	        path = "petition",
-	        httpMethod = HttpMethod.POST
-	    )
-	public Petition CreerPetition(Petition pet) {   
+	@ApiMethod(name = "creer")
+	public Petition CreerPetition(@Named("nom") String nom,
+			@Named("message") String message, 
+			@Named("auteur") String auteur) {
+		Petition pet = new Petition(nom, message, auteur);
 		ofy().save().entity(pet).now();
         logger.info("petition : " + pet.getId());
         return ofy().load().entity(pet).now();
     }
 	
-	@ApiMethod(
-            name = "supprimer",
-            path = "petition/{id}",
-            httpMethod = ApiMethod.HttpMethod.DELETE)
+	@ApiMethod(name = "supprimer")
 	public void supprimerPetition(@Named("id") Long id) throws NotFoundException {
 		checkExists(id);
         ofy().delete().type(Petition.class).id(id).now();
         logger.info("suppression de la petition : " + id);
 	}
 	
-	@ApiMethod(
-            name = "list",
-            path = "petition/liste",
-            httpMethod = ApiMethod.HttpMethod.GET)
+	@ApiMethod(name = "lister")
     public CollectionResponse<Petition> list(@Nullable @Named("cursor") String cursor, @Nullable @Named("limit") Integer limit) {
         limit = limit == null ? DEFAULT_LIST_LIMIT : limit;
         Query<Petition> query = ofy().load().type(Petition.class).limit(limit);
