@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Accueil</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<meta charset="UTF-8">
+	<title>Accueil</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+
     <script src="https://unpkg.com/mithril/mithril.js"></script>
     
 
@@ -37,16 +38,14 @@
 		    loadList: function() {
 		        return m.request({
 		            method: "GET",
-		          //   url: "https://cloudtinypet.appspot.com/_ah/api/myApi/v1/listTopPetition",
+		          //   url: "https://projetcloudm1.appspot.com/_ah/api/myApi/v1/listTopPetition",
 		            url: "https://rem-rest-api.herokuapp.com/api/users",
 		            withCredentials: true,
 		        })
 		        .then(function(result) {
 		            Petition.list = result.data
 		        })
-
 		    },
-
 		}
     
     // affichage de la liste des score
@@ -60,9 +59,6 @@
 	 }
     
 
-	
-	 
-
 	 var Affiche ={
     		 view: function() {
  	 	    	return m("main", [
@@ -70,20 +66,17 @@
  	 	         	m("h2",  "Site de petition en ligne"),
  	 	         	m("p",  "Tiny Pet est un site en ligne ou vous pouvez signer des pétitions, ainsi qu'en créer."),
  	 	         	m("p",  "Afin de créer des pétitions, vous devrez vous connecter sur le site."),
- 	 	            m("li",[m("a", {href:"index.html"}, "Liste des fonctionnalités disponibles"),   	 	            		
- 	 	            ]),
- 	 	             m("li",[m("a", {href:"creerPetition.html"}, "Créer une pétition"),	
- 	 	            ]),
- 	 	             m("button",[m("a", {href:"connexion.html"}, "Se connecter"),
- 	 	            ])
+ 	 	            m("li",[m("a", {href:"index.html"}, "Liste des fonctionnalités disponibles"),]),
+ 	 	            m("li",[m("a", {href:"creerPetition.html"}, "Créer une pétition"),]),
+ 	 	            m("button",[m("a", {href:"connexion.html"}, "Se connecter"),])
  	 	          
- 			     //   m("h1", {class: "title"}, "Trending petitions"),
+ 			        //m("h1", {class: "title"}, "Trending petitions"),
  	 	            //m("div", {id: "box"}, m(PetitionView)),
  	 	        ])
  	 	    }
     }
 
- m.mount(document.body, Affiche)	
+ m.mount(root, Affiche)	
 
 
 

@@ -1,25 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Tiny Pet</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<meta charset="UTF-8">
+	<title>Tiny Pet</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-  <body>
-    <h1>Bienvenue sur TinyPet</h1>
-	<h2>Notre site de pétition </h2>
-	<p>Voici la liste des fonctionnalités présentent sur notre site Tiny Pet.</p>
-	<p>Cliquez sur le premier lien pour retourner à la page d'accueil.</p>
-    <table>
-      <tr>
-        <li><a href='/accueil.html'>Accueil du site TinyPet</a>
-		<li><a href='/comptePerso.html'>Accès au compte personnel</a>
-		<li><a href='/connexion.html'>Connexion</a>
-		<li><a href='/creerPetition.html'>Création d'une pétition</a>
-		<!-- <li><a href='/modifierPetition.html'>Modification d'une pétition</a> -->
-      </tr>
-    </table>
-  </body>
+<body>
+ 	<script src="https://unpkg.com/mithril/mithril.js"></script>
+	<script>
+	
+	var root = document.body
+	
+	var Affichage = {
+	 	    view: function() {
+	 	    	return m("main", [
+	 	           m("h1", {class: "title"}, "Bienvenue sur Tiny Pet"),
+	 	           m("h2", {class: "title"}, "Notre site de pétition en ligne"),
+	 	           m("p", "Voici la liste des fonctionnalités présentent sur notre site Tiny Pet."),
+	 	           m("p", "Cliquez sur le premier lien pour retourner à la page d'accueil."),
+	 	           m("li",[m("a", {href:"accueil.html"}, "Accueil du site TinyPet"),]),
+	 	           m("li",[m("a", {href:"/comptePerso.html"}, "Accès au compte personnel"),]),
+	 	           m("li",[m("a", {href:"/connexion.html"}, "Connexion"),]),
+	 	       	   m("li",[m("a", {href:"/creerPetition.html"}, "Création d'une pétition"),]),
+	 	       	   m("li",[m("a", {href:"/modifierPetition.html"}, "Modification d'une pétition"),]),	 	       	   
+	 	           //m("a", {href:"listePetition.html"}, "Liste des petitions"),
+	 	            
+	 	        ])
+	 	    }
+	 	}
+   
+ 	m.mount(root, Affichage)	
+
+	</script>
+  
+</body>
 </html>
