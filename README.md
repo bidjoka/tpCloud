@@ -43,5 +43,29 @@ https://my-cloud-project-232813.appstpot.com/_ah/api/explorer
 	Une page d'index qui répertorie les fonctionnalités du site, et qui permet à l'aide de lien d'être directement redirigé vers les pages souhaitées.
 
 
+
+Description 
+
+TenyPet est une application qui permet:
+	- De créer une pétition
+	- De signer une pétition
+	- De lister les pétitions signées par un utilisateur
+	- De lister le top 100 des pétitions
+
+---------------------------------------------------------------
+Utilisation 
+
+Via la page d'accueil, l'utilisateur peut se connecter en renseignant ses identifiants.
+Une fois connecté, l'utilisateur est redirigé vers une autre page (page n°2) 
+Sur cette page, il peut créer une pétition. Pour se faire, il appuis sur le bouton "Créer"
+En appuiyant sur le bouton "créer" il sera redirigé vers la page de création de la pétition ou 
+il pourra écrire le contenu. 
+La pétition apparaîtra ainsi sur la page n°2.
+Si l'utilisateur souhaite supprimer la pétition, il appuie sur le bouton "Supprimer", ainsi la 
+pétition ne figureras plus dans la liste des pétitions de la page. Description 
+
+
+
+
 L'accès a toutes les pétitions a lieu avec l'adresse suivante : 
 https://my-cloud-project-232813.appspot.com/_ah/api/myApi/v1/petitions
