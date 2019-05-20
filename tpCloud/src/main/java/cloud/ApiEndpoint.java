@@ -10,22 +10,31 @@ import javax.annotation.Nullable;
 
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
+import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.ApiMethod.HttpMethod;
 import com.google.api.server.spi.config.Named;
 import com.google.api.server.spi.response.CollectionResponse;
 import com.google.api.server.spi.response.NotFoundException;
 import com.google.appengine.api.datastore.Cursor;
 import com.google.appengine.api.datastore.QueryResultIterator;
+import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.cmd.Query;
 
 import object.Petition;
 
-@Api(name = "NotreApi", version = "v1")
+@Api(name = "myApi", version = "v1",
+	namespace = @ApiNamespace(ownerDomain = "helloworld.example.com",
+		ownerName = "helloworld.example.com",
+		packagePath = ""))
 public class ApiEndpoint {
 	
 	private static final Logger logger = Logger.getLogger(ApiEndpoint.class.getName());
 	
 	private static final int DEFAULT_LIST_LIMIT = 100;
+	
+	static {
+        ObjectifyService.register(Petition.class);
+    }
 	
 	@ApiMethod(name = "trouver")
 	public Petition trouverPetition(@Named("id") String id) throws NotFoundException {
@@ -37,7 +46,8 @@ public class ApiEndpoint {
         return pet;
     }
 	
-	@ApiMethod(path = "petition/{nom}/{message}",
+	@ApiMethod(name="petition",
+			   path = "petition/{nom}/{message}/{auteur}",
 			   httpMethod = HttpMethod.POST)
 	public Petition CreerPetition(@Named("nom") String nom,
 			@Named("message") String message, 
