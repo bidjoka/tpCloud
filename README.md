@@ -45,3 +45,7 @@ https://my-cloud-project-232813.appstpot.com/_ah/api/explorer
 
 L'accès a toutes les pétitions a lieu avec l'adresse suivante : 
 https://my-cloud-project-232813.appspot.com/_ah/api/myApi/v1/petitions
+
+#Difficulté
+
+Le site n'est pour le moment pas totale fonctionnel car nous n'avons pas encore mis en relation le back et le font
