@@ -2,9 +2,9 @@
 Réalisation d'un site de pétition en ligne TinyPet
 
 #Réalisé par : 
-	Sarah Arkam
-	Alexandre Bidjoka
-	Floriane Goussin
+	*Sarah ARKAM
+	*Alexandre BIDJOKA
+	*Floriane GOUSSIN
 
 Date : 20 mai 2019
 
@@ -25,8 +25,8 @@ Voici les liens permettant d'avoir tous les accès.
 
 
 #Utilisation
-Pour utiliser l'application, il faut la lancer le code sur un moteur de recherche de type Google. 
-https://my-cloud-project-232813.appstpot.com/_ah/api/explorer
+*Pour utiliser l'application, il faut la lancer le code sur un moteur de recherche de type Google. 
+*https://my-cloud-project-232813.appstpot.com/_ah/api/explorer
 
 	Une page d'acceuil s'affiche avec une des liens redirigeant vers les différentes pages implémentées.
 		- La liste des fonctionnalités
@@ -43,5 +43,5 @@ https://my-cloud-project-232813.appstpot.com/_ah/api/explorer
 	Une page d'index qui répertorie les fonctionnalités du site, et qui permet à l'aide de lien d'être directement redirigé vers les pages souhaitées.
 
 
-L'accès a toutes les pétitions a lieu avec l'adresse suivante : 
-https://my-cloud-project-232813.appspot.com/_ah/api/myApi/v1/petitions
+*L'accès a toutes les pétitions a lieu avec l'adresse suivante : 
+*https://my-cloud-project-232813.appspot.com/_ah/api/myApi/v1/petitions
