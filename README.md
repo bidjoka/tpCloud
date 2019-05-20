@@ -1,6 +1,7 @@
 # tpCloud
 projet de cloud
 
+<<<<<<< HEAD
 
 #Projet Cloud : 
 Réalisation d'un site de pétition en ligne TinyPet
@@ -47,3 +48,6 @@ Une page d'index qui répertorie les fonctionnalités du site, et qui permet à 
 
 
 L'accès a toutes les pétitions a lieu avec l'adresse suivante : https://my-cloud-project-232813.appspot.com/_ah/api/myApi/v1/petitions
+=======
+https://my-cloud-project-232813.appspot.com/_ah/api/myApi/v1/petitions
+>>>>>>> 9b83fd19e54209da8885c69ac2a17f1518204332
