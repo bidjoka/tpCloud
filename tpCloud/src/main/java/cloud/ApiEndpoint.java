@@ -10,6 +10,7 @@ import javax.annotation.Nullable;
 
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
+import com.google.api.server.spi.config.ApiMethod.HttpMethod;
 import com.google.api.server.spi.config.Named;
 import com.google.api.server.spi.response.CollectionResponse;
 import com.google.api.server.spi.response.NotFoundException;
@@ -19,7 +20,7 @@ import com.googlecode.objectify.cmd.Query;
 
 import object.Petition;
 
-@Api(name = "MonApi", version = "v1")
+@Api(name = "NotreApi", version = "v1")
 public class ApiEndpoint {
 	
 	private static final Logger logger = Logger.getLogger(ApiEndpoint.class.getName());
@@ -36,7 +37,8 @@ public class ApiEndpoint {
         return pet;
     }
 	
-	@ApiMethod(name = "creer")
+	@ApiMethod(path = "petition/{nom}/{message}",
+			   httpMethod = HttpMethod.POST)
 	public Petition CreerPetition(@Named("nom") String nom,
 			@Named("message") String message, 
 			@Named("auteur") String auteur) {
@@ -46,14 +48,16 @@ public class ApiEndpoint {
         return ofy().load().entity(pet).now();
     }
 	
-	@ApiMethod(name = "supprimer")
+	@ApiMethod(path = "petition/{id}",
+			   httpMethod = HttpMethod.POST)
 	public void supprimerPetition(@Named("id") Long id) throws NotFoundException {
 		checkExists(id);
         ofy().delete().type(Petition.class).id(id).now();
         logger.info("suppression de la petition : " + id);
 	}
 	
-	@ApiMethod(name = "lister")
+	@ApiMethod(path = "petitions",
+				httpMethod = HttpMethod.GET)
     public CollectionResponse<Petition> list(@Nullable @Named("cursor") String cursor, @Nullable @Named("limit") Integer limit) {
         limit = limit == null ? DEFAULT_LIST_LIMIT : limit;
         Query<Petition> query = ofy().load().type(Petition.class).limit(limit);
