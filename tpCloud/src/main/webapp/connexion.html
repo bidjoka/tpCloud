@@ -4,16 +4,25 @@
 	<meta charset="ISO-8859-1">
 	<title>Tiny Pet</title>
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
-	<meta name="google-signin-client_id" content="645573598547-h18kns51ko3p9ja3ni909jbh79p4gfv4.apps.googleusercontent.com">  
+	<meta name="google-signin-client_id" content="645573598547-h18kns51ko3p9ja3ni909jbh79p4gfv4.apps.googleusercontent.com">
+    
 </head>
 <body>
-	
+	<div class="g-signin2" data-onsuccess="onSignIn"></div>
+	<a href="#" onclick="signOut();">Sign out</a>
+	<script>
+	  function signOut() {
+	    var auth2 = gapi.auth2.getAuthInstance();
+	    auth2.signOut().then(function () {
+	      console.log('User signed out.');
+	    });
+	  }
+	</script>
 
  <!--  Sign In Button -->
-<div class="g-signin2" data-onsuccess="onSignIn"></div>
- <a href="#"><input type="button" name="Sign in" value="Sign in" onclick="onSignIn();"></a>
     <script>
       function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
         var profile = googleUser.getBasicProfile();
         console.log("ID: " + profile.getId()); // Don't send this directly to your server!
         console.log('Full Name: ' + profile.getName());
@@ -25,11 +34,9 @@
         var id_token = googleUser.getAuthResponse().id_token;
         console.log("ID Token: " + id_token);
       }
-      
     </script>
-    <!-- Sign out -->
-    <!-- <div class="g-signin2" data-onsuccess="signOut"></div>-->
-    <a href="index.html"><input type="button" name="Sign out" value="Sign out" onclick="signOut();"></a>
+      <!-- <!-- Sign out -->
+    <a href="index.html" onclick="signOut();">Sign out</a>
 	<script>
 	  function signOut() {
 	    var auth2 = gapi.auth2.getAuthInstance();
@@ -48,5 +55,3 @@
 
 </body>
 </html>
-
-

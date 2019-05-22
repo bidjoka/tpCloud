@@ -3,6 +3,7 @@ package object;
 import com.googlecode.objectify.annotation.Cache;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
 
 
 @Entity
@@ -15,6 +16,9 @@ public class Petition {
 	private String message;
 	private String auteur; 
 	
+	@Index
+	private Long auteurId;
+	
 	private Long nbSignataire;
 	
 	public Petition() {
@@ -26,6 +30,13 @@ public class Petition {
 		this.nom = nom;
 		this.message = message;
 		this.auteur = posteur;
+	}
+
+	public Petition(String nom, String message) {
+
+		this.nom = nom;
+		this.message = message;
+		
 	}
 
 	public Long getId() {

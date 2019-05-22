@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>First App Mythrill</title>
+</head>
+<body>
+
+
+
+	<script src="https://unpkg.com/mithril/mithril.js"></script>
+	<script>	
+
+    var petition = {
+	    list: [],
+	    loadList: function() {
+	        return m.request({
+	            method: "GET",
+	            url: "https://my-cloud-project-232813.appspot.com/_ah/api/myApi/v1/petitions"
+	        })
+	        .then(function(result) {
+	            petition.list = result.items
+	        	console.log("got:",result.items)
+	        	m.redraw(true) // force
+	        })
+	    },
+	    current: {},
+	    save: function() {
+	    	console.log("saving...",petition.current)
+	        return m.request({
+	            method: "POST",
+	            url: "https://my-cloud-project-232813.appspot.com/_ah/api/myApi/v1/petition/"+petition.current.nom+"/"+petition.current.message+"/"+petition.current.auteur
+	        })
+	        .then(function(result) {
+	        	console.log("got:",result)
+	        	petition.loadList()
+	        })
+	    }
+	}
+
+var PetitionView = {
+		oninit: petition.loadList,
+	    view: function() {
+	        return m(".user-list", petition.list.map(function(item) {
+	            return m(".user-list-item", item.nom + " " + item.message)
+	        }))
+	    },
+		
+}
+
+var count = 0;
+
+var Hello = {
+	    view: function() {
+	    	return m("main", [
+	            m("h1", {class: "title"}, "My second app  mithril tagada"),
+	            m("div", {id: "box"}, m(PetitionView)),
+	            m("div", {id: "form"}, m(Form)),
+	        ])
+	    }
+	}
+
+
+var Form = {
+		view: function() {
+	        return m("form", {
+	                onsubmit: function(e) {
+	                    e.preventDefault()
+	                    petition.save()
+	                }
+	            }, [
+	            m("label.label", "nom"),
+	            m("input.input[type=int][placeholder=nom de la petition]",{
+	                oninput: function (e) {petition.current.nom=e.target.value},
+	                value: petition.current.nom
+	            }),
+	            m("label.label", "message"),
+	            m("input.input[type=text][placeholder=votre petition]", {
+	                oninput: function (e) {petition.current.message=e.target.value},
+	                value: petition.current.message
+	            }),
+                m("input.input[type=text][placeholder=auteur]", {
+	                oninput: function (e) {petition.current.auteur=e.target.value},
+	                value: petition.current.auteur
+	            }),
+	            m("button.button[type=submit]", "Save"),
+	        ])
+	    }
+}
+
+m.mount(document.body, Hello)	
+
+
+</script>
+</body>
+</html>

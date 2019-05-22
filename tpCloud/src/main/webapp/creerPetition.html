@@ -1,92 +1,84 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>Créer ma petition</title>
-	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Creer ma petition</title>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<meta name="google-signin-client_id" content="645573598547-h18kns51ko3p9ja3ni909jbh79p4gfv4.apps.googleusercontent.com">
 </head>
 <body>
 
 	<script src="https://unpkg.com/mithril/mithril.js"></script>
-	<script>
+	<script>	
 
-    var root = document.body
-
-	var Petition = {
-	    list: [],
-	    loadList: function() {
-	        return m.request({
-	            method: "GET",
-	            url: "https://projetcloudm1.appspot.com/api/myApi/v1/listAllPetition",
-	            withCredentials: true,
-	        })
-	        .then(function(result) {
-	            Petition.list = result.data
-	        })
-	    }, 
+/*formulaire pour la pétition, il faut le corrigé et trouver un moyen de passer en paramètre 
+le nom de l'auteur*/
+var Petition = { 
 	    current: {},
 	    save: function() {
 	    	console.log("saving...",Petition.current)
 	        return m.request({
 	            method: "POST",
-	            //profile.getId() récupère l'ID du USER 
-	            url: "https://projetcloudm1.appspot.com/_ah/api/myApi/v1/addPetition?body="+Petition.current.body+"&title="+Petition.current.title,
-	            data: Petition.current,
+	            url: "https://localhost:8888/_ah/api/NotreApi/v1/petition/"+Petition.current.nom+"/"+Petition.current.message,
 	            withCredentials: true, 
-	        })
-	        .then(function(result) {
-	        	console.log("got:",result)
-	        	Petition.loadList()
 	        })
 	    }
 	}
 
-    // formulaire pour poster une petition
-	 var PetitionFormulaire = {
-				view: function() {
-			        return m("form", {
-			                onsubmit: function(e) {
-			                    e.preventDefault()
-			                    Petition.save()
-			                    console.log("ici");
-			                }
-			            }, [
-			            m("label.label", "nom"),
-			            m("input.input[type=textarea][style=width:400px; height:100px;][placeholder=Nom de la pétition]",{
-			                oninput: function (e) {Petition.current.title=e.target.value},
-			                value: Petition.current.nom
-			            }),
-			            m("label.label", "corps"),
-			            m("input.input[type=textarea][style=width:600px; height:200px;][placeholder=Corps de la pétition]", {
-			                oninput: function (e) {Petition.current.body=e.target.value},
-			                value: Petition.current.corps
-			            }),
-			            m("button.button[type=submit]", "Sauvegarder"),
-			        ])
-			    }
-		}
 
+var Form = {
+		view: function() {
+	        return m("form", {
+	                onsubmit: function(e) {
+	                    e.preventDefault()
+	                    Petition.save()
+	                }
+	            }, [
+	            m("label", "nom"),
+	            m("input[type=int][placeholder=votre pétition]",{
+	                oninput: function (e) {Petition.current.nom=e.target.value},
+	                value: Petition.current.nom
+	            }),
+	            m("label", "message"),
+	            m("input[type=text][placeholder=son contenu]", {
+	                oninput: function (e) {Petition.current.message=e.target.value},
+	                value: Petition.current.message
+	            }),
+	            m("button[type=submit]", "Save"),
+	        ])
+	    }
+}
     
-	 var Affichage = {
-	 	    view: function() {
-	 	    	return m("main", [
-	 	           m("h1", {class: "title"}, "Soumettre une pétition"),
-	 	           m("p", "Vous pouvez ici créer une nouvelle pétition."),
-	 	           m("p", "Cette dernière dois contenir un titre et un description de la pétition."),
-	 	           m("div", {id: "form"}, m(PetitionFormulaire)), 
-	 	           m("li",[m("a", {href:"accueil.html"}, "Revenir à l'écran d'acceuil"),]),
-	 	           m("li",[m("a", {href:"index.html"}, "Revenir à la liste des fonctionnalités"),]),
-	 	           
-	 	           //m("a", {href:"listePetition.html"}, "Liste des petitions"),
-	 	            
-	 	        ])
-	 	    }
-	 	}
-   
- 	m.mount(root, Affichage)	
+    //à compléter pour intégration dans le header afin de permettre la déconnexion de l'auteur
+    var signout = {
+             function signOut() {
+	                var auth2 = gapi.auth2.getAuthInstance();
+	                auth2.signOut().then(function () {
+	                console.log('User signed out.');
+	            });
+	        }
+        }
 
-	</script>
-	
+    //affichage du rendu total, il faut mettre le header
+    var affiche = {
+	    view: function() {
+	    	return m("main", [
+	            m("h1", {class: "title"}, "Créer votre pétition"),
+	            m("div", {id: "form"}, m(PetitionForm)),
+	            m("button", {onclick: function() {count++}}, count + " clicks"),
+
+	        ])
+	    }
+	}
+
+m.route(root, "/splash", {
+    "/splash": Splash,
+    "/hello": Hello,
+})
+
+
+</script>
 </body>
 </html>

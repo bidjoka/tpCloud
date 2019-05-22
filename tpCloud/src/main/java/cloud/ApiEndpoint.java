@@ -2,23 +2,18 @@ package cloud;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.annotation.Nullable;
 
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.ApiMethod.HttpMethod;
 import com.google.api.server.spi.config.Named;
-import com.google.api.server.spi.response.CollectionResponse;
 import com.google.api.server.spi.response.NotFoundException;
-import com.google.appengine.api.datastore.Cursor;
-import com.google.appengine.api.datastore.QueryResultIterator;
 import com.googlecode.objectify.ObjectifyService;
-import com.googlecode.objectify.cmd.Query;
 
 import object.Petition;
 
@@ -29,8 +24,6 @@ import object.Petition;
 public class ApiEndpoint {
 	
 	private static final Logger logger = Logger.getLogger(ApiEndpoint.class.getName());
-	
-	private static final int DEFAULT_LIST_LIMIT = 100;
 	
 	static {
         ObjectifyService.register(Petition.class);
@@ -55,7 +48,7 @@ public class ApiEndpoint {
 		Petition pet = new Petition(nom, message, auteur);
 		ofy().save().entity(pet).now();
         logger.info("petition : " + pet.getId());
-        return ofy().load().entity(pet).now();
+        return pet;
     }
 	
 	@ApiMethod(path = "petition/{id}",
@@ -66,20 +59,12 @@ public class ApiEndpoint {
         logger.info("suppression de la petition : " + id);
 	}
 	
-	@ApiMethod(path = "petitions",
-				httpMethod = HttpMethod.GET)
-    public CollectionResponse<Petition> list(@Nullable @Named("cursor") String cursor, @Nullable @Named("limit") Integer limit) {
-        limit = limit == null ? DEFAULT_LIST_LIMIT : limit;
-        Query<Petition> query = ofy().load().type(Petition.class).limit(limit);
-        if (cursor != null) {
-            query = query.startAt(Cursor.fromWebSafeString(cursor));
-        }
-        QueryResultIterator<Petition> queryIterator = query.iterator();
-        List<Petition> petitionList = new ArrayList<Petition>(limit);
-        while (queryIterator.hasNext()) {
-            petitionList.add(queryIterator.next());
-        }
-        return CollectionResponse.<Petition>builder().setItems(petitionList).setNextPageToken(queryIterator.getCursor().toWebSafeString()).build();
+	@ApiMethod(name = "petitions",
+			   path = "petitions",
+			   httpMethod = HttpMethod.GET)
+    public Collection<Petition> list() {
+        List<Petition> petitions = ofy().load().type(Petition.class).list();
+        return petitions;
     }
 	
 	private void checkExists(Long id) throws NotFoundException {
