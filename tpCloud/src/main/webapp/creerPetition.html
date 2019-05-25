@@ -15,6 +15,7 @@
 
 	<script src="https://unpkg.com/mithril/mithril.js"></script>
 	<script>	
+	var root = document.body
 
     var petition = {
 	    list: [],
@@ -66,11 +67,11 @@ var Form = {
 	                    petition.save()
 	                }
 	            }, [
-	            m("input.input[type=textarea][style=width:500px; height:100px;][placeholder=Nom de la petition]",{
+	            m("input.input[type=textarea][style=width:500px; height:100px;][placeholder=Nom de la pétition]",{
 	                oninput: function (e) {petition.current.nom=e.target.value},
 	                value: petition.current.nom
 	            }),
-	            m("input.input[type=textarea][style=width:500px; height:100px;][placeholder=Contenu de la petition]", {
+	            m("input.input[type=textarea][style=width:500px; height:100px;][placeholder=Contenu de la pétition]", {
 	                oninput: function (e) {petition.current.message=e.target.value},
 	                value: petition.current.message
 	            }),
@@ -83,7 +84,7 @@ var Form = {
 	    }
 }
 
-var Hello = {
+var Affichage = {
 	    view: function() {
 	    	return m("main", [
 	    		m("button",[m("a", {href:"accueil.html"}, "Accueil"),]),
@@ -100,7 +101,7 @@ var Hello = {
 	    }
 	}
 
-m.mount(document.body, Hello)	
+m.mount(root, Affichage)	
 
 
 

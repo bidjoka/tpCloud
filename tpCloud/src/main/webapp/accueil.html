@@ -47,8 +47,9 @@
 		view: function() {
 			return m(".user-list", petition.list.map(function(item) {
 		    	return m ("main", [
-		          	m(".user-list-item", item.nom + " " + item.message),
-		           	m("button.button[type=submit][margin-top=1000px]", "Sign")
+		          	m(".user-list-item", item.nom),
+		          	m(".user-list-item",item.message),
+		           	m("button.button[type=submit]", "Sign")
 		        ])
 		    }))
 		},	
