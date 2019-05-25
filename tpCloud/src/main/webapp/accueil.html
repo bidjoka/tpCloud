@@ -2,70 +2,80 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Accueil</title>
+<title>Accueil Tiny Pet</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+
+
     <script src="https://unpkg.com/mithril/mithril.js"></script>
-    
+    <script>
 
-	<script>	
+	var root = document.body
 
-var petitions = {
+	var petition = {
 	    list: [],
 	    loadList: function() {
 	        return m.request({
 	            method: "GET",
-	            url: "'http://localhost:8080/_ah/api/MonApi/v1/petitions'"
+	            url: "https://my-cloud-project-232813.appspot.com/_ah/api/myApi/v1/petitions"
 	        })
-	        .then(function(items) {
-	            petitions.list = result.items
+	        .then(function(result) {
+	            petition.list = result.items
 	        	console.log("got:",result.items)
 	        	m.redraw(true) // force
 	        })
-	    }
-	}
-
-   var PetitionView = {
-		oninit: petition.loadList,
-	    view: function() {
-	        return m(".user-list", Petition.list.map(function(item) {
-	            return m(".Petition-list-item", item.properties.name + " " + item.properties.message)
-	        }))
 	    },
-		
-    }
-
-    var signIn = {
-        function onSignIn(googleUser) {
-        // Useful data for your client-side scripts:
-        var profile = googleUser.getBasicProfile();
-        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-        console.log('Full Name: ' + profile.getName());
-        console.log('Given Name: ' + profile.getGivenName());
-        console.log('Family Name: ' + profile.getFamilyName());
-        console.log("Image URL: " + profile.getImageUrl());
-        console.log("Email: " + profile.getEmail());
-        // The ID token you need to pass to your backend:
-        var id_token = googleUser.getAuthResponse().id_token;
-        console.log("ID Token: " + id_token);
-      }
-
-    }
-
-    var affiche = {
-	    view: function() {
-	    	return m("main", [
-	            m("h1", {class: "title"}, "accueil"),
-	            m("div", {id: "box"}, m(PetitionView)),
-	            m("div", {id: "form"}, m(Form)),
-	            m("button", {onclick: function() {count++}}, count + " clicks"),
-	        ])
+	    current: {},
+	    save: function() {
+	    	console.log("saving...",petition.current)
+	        return m.request({
+	            method: "POST",
+	            url: "https://my-cloud-project-232813.appspot.com/_ah/api/myApi/v1/petition/"+petition.current.nom+"/"+petition.current.message+"/"+petition.current.auteur
+	        })
+	        .then(function(result) {
+	        	console.log("got:",result)
+	        	petition.loadList()
+	        })
 	    }
 	}
 
-m.mount(document.body, affiche)	
+// affichage de la liste
+	var PetitionView = {
+		oninit: petition.loadList,
+		view: function() {
+			return m(".user-list", petition.list.map(function(item) {
+		    	return m ("main", [
+		          	m(".user-list-item", item.nom + " " + item.message),
+		           	m("button.button[type=submit][margin-top=1000px]", "Sign")
+		        ])
+		    }))
+		},	
+	}
+
+
+	var Affiche ={
+		view: function() {
+		return m("main", [
+			m("button",[m("a", {href:"creerPetition.html"}, "Créer une pétition"),]),
+			m("button",[m("a", {href:"test2.html"}, "Mes pétitions"),]),
+			m("button",[m("a", {href:"connexion.html"}, "Se connecter"),]),
+			m("h1", "Tiny Pet"),
+	 	    m("h2",  "Site de petition en ligne"),
+	 	    m("p",  "Tiny Pet est un site en ligne ou vous pouvez signer des pétitions, ainsi qu'en créer."),
+	 	    m("p",  "Afin de créer des pétitions, vous devrez vous connecter sur le site."),
+	 	    m("p",  "Voici la liste des pétitions présentent sur le site."),
+	 	    m("div", {id: "box"}, m(PetitionView)),
+	 	    m("li",[m("a", {href:"index.html"}, "Liste des fonctionnalités disponibles"),]),
+	 	    //m("li",[m("a", {href:"creerPetition.html"}, "Créer une pétition"),]),
+	 	    
+	 	    ])
+	 	}
+	}
+
+	m.mount(root, Affiche)	
+
 
 </script>
 </body>
