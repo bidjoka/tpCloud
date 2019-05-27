@@ -22,7 +22,7 @@ var petition = {
 	    	console.log("saving...",petition.current)
 	        return m.request({
 	            method: "POST",
-	            url: "https://my-cloud-project-232813.appspot.com/_ah/api/myApi/v1/mespetitions/"+petition.current.auteur
+	            url: "https://my-cloud-project-232813.appspot.com/_ah/api/myApi/v1/mespetition/"+petition.current.auteur
 	        })
 	        .then(function(result) {
 	        	console.log("got:",result)
@@ -49,7 +49,7 @@ m.render(root, [
                     m("li",
                         m("a", {href: "/MesPetitions.html"},
                             m("span", {class: "glyphicon glyphicon-th-list", style: "color: blue"}),
-                            "Petitions que j'ai signe")
+                            "PÃÂ©titions que j'ai signe")
                         ),
                    
                     )
@@ -76,8 +76,8 @@ m.render(root, [
 	                    petition.chercher()
                     }
                 },
-                m("legend", "Votre nom"),
-                    m("label", "auteur"),
+                m("legend", "Votre petition"),
+                    m("label", "votre nom"),
                     m("input", { class: "form-control",
 	                    oninput: function (e) {petition.current.auteur=e.target.value},
 	                                value: petition.current.auteur

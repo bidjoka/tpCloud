@@ -44,7 +44,7 @@ body { padding-top: 70px; padding-bottom:70px;}
                                                  m("strong", {class: "glyphicon glyphicon-globe", style: "color: blue"}),
                                                  "TinyPet")
                                     ),
-                            		m("li",m("a", {href:"creerPetition.html"}, "Créer une petition"),),
+                            		m("li",m("a", {href:"creerPetition.html"}, "lancer une petition"),),
                             		m("li",m("a", {href:"MesPetitions.html"}, "pétitions que j'ai signé"),),   
                             )
                         )
@@ -74,7 +74,7 @@ body { padding-top: 70px; padding-bottom:70px;}
 			 	        m("button", {class: "btn btn-primary", onclick: function() {  console.log("iciiiii")
 			 	    	   		return m.request({
 		           						method: "POST",
-		           						url: "https://my-cloud-project-232813.appspot.com/_ah/api/myApi/v1/signer/" + pet.id+ "/"+localStorage.getItem('userId'),    
+		           						url: "https://my-cloud-project-232813.appspot.com/_ah/api/myApi/v1/signer/" + pet.id+ "/"+pet.auteur,    
 		    						})}}, "signer"),
 		 	    		 ])
 		 	        }))
