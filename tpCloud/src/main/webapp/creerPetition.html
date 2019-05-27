@@ -44,11 +44,20 @@ m.render(root, [
                             m("strong", {class: "glyphicon glyphicon-globe", style: "color: blue"}),
                             "TinyPet")
                         ),
+                        m("li",
+                                m("a", {href: "/connexion.html"},
+                                    "Connexion")
+                                ),
                     m("li",
                         m("a", {href: "/creerPetition.html"},
                             m("span", {class: "glyphicon glyphicon-pencil", style: "color: blue"}),
                             "Créer une pétition")
                         ),
+                        m("li",
+                                m("a", {href: "test2.html"},
+                                    m("span", {class: "glyphicon glyphicon-th-list", style: "color: blue"}),
+                                    "Liste des pétitions")
+                                ),
                     m("li",
                         m("a", {href: "MesPetitions.html"},
                             m("span", {class: "glyphicon glyphicon-th-list", style: "color: blue"}),
@@ -59,10 +68,7 @@ m.render(root, [
                             m("span", {class: "glyphicon glyphicon-thumbs-up", style: "color: blue"}),
                             "Top 100 des pétitions")
                         ),*/
-                    m("li",
-                        m("a", {href: "/connexion.html"},
-                            "Se connecter")
-                        )
+                    
                     )
                 )
             ),

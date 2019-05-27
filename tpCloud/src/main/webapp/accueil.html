@@ -55,16 +55,17 @@ body { padding-top: 70px; padding-bottom:70px;}
 	 var Affichage = {
 	 	    view: function() {
 	 	    	return m("main", [
-                    m("header",
-                        m("nav.menu",
-                            m("ul",
+	 	    		 m("header",{style: "color: blue"},[
+	 	    	        m("nav", {class: "navbar navbar-default navbar-fixed-top" },
+	 	    	            m("div", {class: "container-fluid" },
+	 	    	                m('ul', {class: "nav navbar-nav" },
                             		m("li",
                                              m("a", {class: "navbar-brand", href: "accueil.html" , style: "color: blue"},
                                                  m("strong", {class: "glyphicon glyphicon-globe", style: "color: blue"}),
                                                  "TinyPet")
                                     ),
                             		m("li", m("a", {href:"connexion.html"}, "Connexion"),),
-                            		m("li",m("a", {href:"creerPetition.html"}, "Poster une petition"),),
+                            		m("li",m("a", {href:"creerPetition.html"}, "Créer une petition"),),
                             		m("li",m("a", {href:"test2.html"}, "Liste des petitions"),),
                             		m("li",m("a", {href:"MesPetitions.html"}, "Mes petitions"),),
                                
@@ -74,7 +75,8 @@ body { padding-top: 70px; padding-bottom:70px;}
 	 	           
 	 	            m("h1", {class: "title"}, "Petitions récentes"),
 	 	            m("div", {id: "box"}, m(PetitionView)),
-	 	        ])
+	 	        ]),
+	 	       ])
 	 	    }
 	 	}
 

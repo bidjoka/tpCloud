@@ -6,6 +6,9 @@
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 	<meta name="google-signin-client_id" content="645573598547-h18kns51ko3p9ja3ni909jbh79p4gfv4.apps.googleusercontent.com">
+<style type="text/css">
+body { padding-top: 70px; padding-bottom:70px;}
+</style>
 </head>
 <body>
 
@@ -56,9 +59,23 @@ var PetitionView = {
 var Affichage = {
 	    view: function() {
 	    	return m("main", [
-	    		m("button",[m("a", {href:"accueil.html"}, "Accueil"),]),
-	    		m("button",[m("a", {href:"creerPetition.html"}, "Créer une pétition"),]),
-				m("button",[m("a", {href:"connexion.html"}, "Se connecter"),]),
+	    		
+	    		m("header",
+                        m("nav.menu",
+                            m("ul",
+                            		m("li",
+                                             m("a", {class: "navbar-brand", href: "accueil.html" , style: "color: blue"},
+                                                 m("strong", {class: "glyphicon glyphicon-globe", style: "color: blue"}),
+                                                 "TinyPet")
+                                    ),
+                            		m("li", m("a", {href:"connexion.html"}, "Connexion"),),
+                            		m("li",m("a", {href:"creerPetition.html"}, "Poster une petition"),),
+                            		m("li",m("a", {href:"test2.html"}, "Liste des petitions"),),
+                            		m("li",m("a", {href:"MesPetitions.html"}, "Mes petitions"),),
+                               
+                            )
+                        )
+                    ),
 	            m("h1", {class: "title"}, "Liste des pétitions"),
 	            m("p", "Voici la liste des pétitions, avec leurs titres et leurs contenus"),
 	            m("div", {id: "box"}, m(PetitionView)),
