@@ -33,22 +33,16 @@ Voici les liens permettant d'avoir tous les accès.
 
 Description du site de pétition
 
-	Une page d'acceuil s'affiche avec un des liens redirigeant vers les différentes pages implémentées.
-		- La liste des fonctionnalités
+	Une page d'acceuil contenant le top 100 des pétions s'affiche avec un des liens redirigeant vers les différentes pages implémentées.
+	
 		- La création d'une pétition
-		- La liste des pétitions
-		- La connexion au compte utilisateur
-
-	Une page de connexion. Elle permet à l'utilisateur de se connecter, surtout dans le cas de la création d'une pétition.
-	Ceci à l'aide d'un compte google.
+		- La liste des pétitions signer par un utilisateur
 
 	Une page de création de pétition.
 		- Soumission d'une petition avec un titre et une description
 		- Une possibilité de revenir soit à l'écran d'accueil, ou d'avoir accès à toutes les autres fonctionnalités
 		
 	Une page contenant toutes les pétitions d'une personne.
-
-	Une page contenant la liste de toutes les pétitions répertoriées sur le site TinyPet
 
 	Une page d'index qui répertorie les fonctionnalités du site, et qui permet à l'aide de lien d'être directement redirigé vers les pages souhaitées.
 
