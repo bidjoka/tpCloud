@@ -41,6 +41,7 @@ Description du site de pétition
 	Une page d'acceuil s'affiche avec un des liens redirigeant vers les différentes pages implémentées.
 		- La liste des fonctionnalités
 		- La création d'une pétition
+		- La liste des pétitions
 		- La connexion au compte utilisateur
 
 	Une page de connexion. Elle permet à l'utilisateur de se connecter, surtout dans le cas de la création d'une pétition.
@@ -48,9 +49,11 @@ Description du site de pétition
 
 	Une page de création de pétition.
 		- Soumission d'une petition avec un titre et une description
-		- Une possibilité de revenir soit à l'écran d'accueil soit à la liste des fonctionnalités
+		- Une possibilité de revenir soit à l'écran d'accueil, ou d'avoir accès à toutes les autres fonctionnalités
 		
 	Une page contenant toutes les pétitions d'une personne.
+
+	Une page contenant la liste de toutes les pétitions répertoriées sur le site TinyPet
 
 	Une page d'index qui répertorie les fonctionnalités du site, et qui permet à l'aide de lien d'être directement redirigé vers les pages souhaitées.
 
@@ -60,7 +63,7 @@ https://my-cloud-project-232813.appspot.com/_ah/api/myApi/v1/petitions
 
 
 
-Difficulté
+Difficultés
 
 
-La connexion au compte utilisateur via l'adresse Google de la personne n'est pas effective.
+La connexion au compte utilisateur via l'adresse Google de la personne
