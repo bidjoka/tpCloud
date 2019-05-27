@@ -1,7 +1,13 @@
 Projet Cloud : 
+
+
 Réalisation d'un site de pétition en ligne TinyPet
 
+
+
 Réalisé par : 
+
+
 	Sarah ARKAM
 	Alexandre BIDJOKA
 	Floriane GOUSSIN
@@ -14,6 +20,8 @@ Date : 20 mai 2019
 
 
 Installation
+
+
 Pour installer le projet, il faut avoir accès à Google App Engine, notre code source présent sur GitHub et une interface Rest.
 Voici les liens permettant d'avoir tous les accès.
 
@@ -23,6 +31,8 @@ Voici les liens permettant d'avoir tous les accès.
 
 
 Exploration de l'API
+
+
 Pour explorer l'API, il faut la lancer le code sur la barre d'adresse d'un navigateur. 
 https://my-cloud-project-232813.appstpot.com/_ah/api/explorer
 
@@ -47,6 +57,7 @@ Description du site de pétition
 
 L'accès a toutes les pétitions a lieu avec l'adresse suivante : 
 https://my-cloud-project-232813.appspot.com/_ah/api/myApi/v1/petitions
+
 
 
 Difficulté
