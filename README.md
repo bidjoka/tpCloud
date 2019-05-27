@@ -62,3 +62,4 @@ Difficultés
 
 
 La connexion au compte utilisateur via l'adresse Google de la personne
+Il peut y avoir un problème de version avec app engine, le lancement en local donne l'affichage voulu.
