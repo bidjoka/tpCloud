@@ -1,35 +1,20 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
-    <title>Tiny Pet</title>
+    <title>Hello App Engine</title>
   </head>
 
   <body>
-  <script src="https://unpkg.com/mithril/mithril.js"></script>
-  <script>
-  
-  var root = document.body
-  
-  var Affichage = {
-        view: function() {
-          return m("main", [
-               m("h1", {class: "title"}, "Bienvenue sur Tiny Pet"),
-               m("h2", {class: "title"}, "Notre site de pétition en ligne"),
-               m("p", "Voici la liste des fonctionnalités présentent sur notre site Tiny Pet."),
-               m("p", "Cliquez sur le premier lien pour retourner à la page d'accueil."),
-               m("li",[m("a", {href:"accueil.html"}, "Accueil du site TinyPet"),]),
-               m("li",[m("a", {href:"/comptePerso.html"}, "Accès au compte personnel"),]),
-               m("li",[m("a", {href:"/connexion.html"}, "Connexion"),]),
-               m("li",[m("a", {href:"/creerPetition.html"}, "Création d'une pétition"),]),
-               m("li",[m("a", {href:"/test2.html"}, "Liste des pétitions"),]),                
-            ])
-        }
-    }
-   
-  m.mount(root, Affichage)  
+    <h1>Hello App Engine!</h1>
 
-  </script>
+    <table>
+      <tr>
+        <td colspan="2" style="font-weight:bold;">Available Servlets:</td>        
+      </tr>
+      <tr>
+        <td><a href='/hello'>The servlet</a></td>
+      </tr>
+    </table>
   </body>
 </html>

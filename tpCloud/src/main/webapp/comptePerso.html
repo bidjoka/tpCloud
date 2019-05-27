@@ -3,37 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="google-signin-client_id" content="645573598547-h18kns51ko3p9ja3ni909jbh79p4gfv4.apps.googleusercontent.com">
 <title>Mon compte</title>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <nav class="navbar navbar-default navbar-fixed-top">
-			<div class="container-fluid">
-					<ul class="nav navbar-nav">
-						<li>
-							<a href=#><img src=logo.png></a>
-						</li>
-						<li>
-							<a href="/"> <span class="glyphicon glyphicon-home"></span> Accueil </a>
-					</ul>
-					<form class="navbar-form navbar-right inline-form">
-						<button class="btn btn-primary"><a href="/boumsong/Deconnexion" style="color:white;" title="déconnexion">Déconnexion</a></button>
-					</form>
-			</div>
-	    </nav>
 
-        <script src="https://unpkg.com/mithril/mithril.js"></script>
-        <script>	
-        
-        var root = document.body
+    <script src="https://unpkg.com/mithril/mithril.js"></script>
+    <script>	
 
         var MesPetition = {
             list: [],
             loadList: function() {
                 return m.request({
                     method: "GET",
-                    url: "https://sobike44.appspot.com/_ah/api/myApi/v1/entity/titi"
+                    url: "https://my-cloud-project-232813.appspot.com/_ah/api/myApi/v1/petition"
                 })
                 .then(function(result) {
                     Score.list = result.items
@@ -55,7 +39,48 @@
             }
         }
 
-    m.mount(root, MesPetition)	
+        var affiche = {
+	    view: function() {
+            return m("header",
+                    m("nav", {class: "navbar fixed-top navbar-expand-lg navbar-dark indigo"},
+                        m("a", {class: "navbar-brand", href: "#"}, 
+                            m("img", {src:""}, "TinyPet")
+                            ),
+                        m("div", {class: "collapse navbar-collapse"},
+                            m("ul", {class: "navbar-nav mr-auto"},
+                                m("li", {class: "nav-item active"},
+                                    m("a", {class: "nav-link", href: "#"}, "lancer une pétition")
+                                    ),
+                                m("li", {class: "nav-item"},
+                                    m("a", {class: "nav-link", href: "#"}, "pétitions populaires")
+                                    ),
+                                m("li", {class: "nav-item"},
+                                    m("a", {class: "nav-link", href: "/accueil.html"}, "se déconnecter")
+                                    )
+                                )
+                            )    
+                        ),
+                    m("div", {class: "view-intro-2"},
+                        m("div", {class: "full-bg-img"},
+                            m("div", {class: "mask rgba-purple-light flex-center"},
+                                m("div", {class: "container text-center white-text wow fadeInup"},
+                                    m("h2","mot"),
+                                    m("br"),
+                                    m("h5","mot")
+                                    )
+                                )
+                          )
+                    )
+                ),
+                m("main", [
+	            m("h1", {class: "title"}, "Créer votre pétition"),
+	            m("div", m(MesPetition))
+	        ])
+        }
+	}
+
+
+    m.mount(document.body, affiche)	
 
 </script>
 </div>
