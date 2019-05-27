@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="google-signin-client_id" content="645573598547-h18kns51ko3p9ja3ni909jbh79p4gfv4.apps.googleusercontent.com">
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <title>Lancer votre pétition</title>
 <style type="text/css">
@@ -30,20 +31,7 @@ var petition = {
 	        })
 	    }
     }
-
-var deconnexion = {
-    list: null,
-    decon: function(){
-       return m.request({
-	            method: "POST",
-	            url: "https://my-cloud-project-232813.appspot.com/_ah/api/myApi/v1/connexion"
-            }) 
-            .then(function(result) {
-	        	console.log("got:",result)
-	        	deconnexion.list = result
-	        })
-    }
-}
+        
 
 
 m.render(root, [
@@ -57,22 +45,23 @@ m.render(root, [
                             "TinyPet")
                         ),
                     m("li",
-                        m("a", {href: "/creerPetition.html"},
+                        m("a", {href: "#"},
                             m("span", {class: "glyphicon glyphicon-pencil", style: "color: blue"}),
-                            "lancer une pétition")
+                            "lancer une pétitions")
                         ),
                     m("li",
-                        m("a", {href: "/MesPetitions.html"},
+                        m("a", {href: "#"},
                             m("span", {class: "glyphicon glyphicon-th-list", style: "color: blue"}),
                             "Mes pétitions")
                         ),
                     m("li",
-                        m("a", {href: "#", onclick: function(e) {
-	                                            e.preventDefault()
-	                                            deconnexion.decon()
-                    }
-                },
-                            "déconnexion")
+                        m("a", {href: "#"},
+                            m("span", {class: "glyphicon glyphicon-thumbs-up", style: "color: blue"}),
+                            "top 100 pétitions")
+                        ),
+                    m("li",
+                        m("a", {href: "#"},
+                            "connexion")
                         )
                     )
                 )
@@ -90,7 +79,6 @@ m.render(root, [
         )
         ]),
          m("hr", {style: "color: blue"} ),
-        m("hr", {style: "color: blue"} ),
          m("main", [
             m("form", {class: "col-lg-4 col-lg-offset-4",
                 onsubmit: function(e) {
