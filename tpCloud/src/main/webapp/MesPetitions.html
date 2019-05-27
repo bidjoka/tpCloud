@@ -49,7 +49,7 @@ m.render(root, [
                     m("li",
                         m("a", {href: "/MesPetitions.html"},
                             m("span", {class: "glyphicon glyphicon-th-list", style: "color: blue"}),
-                            "PÃÂ©titions que j'ai signe")
+                            "Petitions que j'ai signe")
                         ),
                    
                     )
@@ -76,7 +76,7 @@ m.render(root, [
 	                    petition.chercher()
                     }
                 },
-                m("legend", "Votre petition"),
+                m("legend", "rechercher"),
                     m("label", "votre nom"),
                     m("input", { class: "form-control",
 	                    oninput: function (e) {petition.current.auteur=e.target.value},
