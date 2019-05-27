@@ -30,22 +30,7 @@ var petition = {
 	        })
 	    }
     }
-
-var deconnexion = {
-    list: null,
-    decon: function(){
-       return m.request({
-	            method: "POST",
-	            url: "https://my-cloud-project-232813.appspot.com/_ah/api/myApi/v1/connexion"
-            }) 
-            .then(function(result) {
-	        	console.log("got:",result)
-	        	deconnexion.list = result
-	        })
-    }
-}
-
-
+    
 m.render(root, [
     m("header",{style: "color: blue"},[
         m("nav", {class: "navbar navbar-default navbar-fixed-top" },
@@ -64,16 +49,9 @@ m.render(root, [
                     m("li",
                         m("a", {href: "/MesPetitions.html"},
                             m("span", {class: "glyphicon glyphicon-th-list", style: "color: blue"}),
-                            "Mes pétitions")
+                            "Pétitions que j'ai signé")
                         ),
-                    m("li",
-                        m("a", {href: "#", onclick: function(e) {
-	                                            e.preventDefault()
-	                                            deconnexion.decon()
-                    }
-                },
-                            "déconnexion")
-                        )
+                   
                     )
                 )
             ),

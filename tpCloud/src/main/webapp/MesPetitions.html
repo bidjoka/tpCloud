@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<title>Lancer votre pétition</title>
+<title>Lancer votre petition</title>
 <style type="text/css">
 body { padding-top: 70px; padding-bottom:70px;}
 </style>
@@ -13,69 +13,81 @@ body { padding-top: 70px; padding-bottom:70px;}
 
 <script src="https://unpkg.com/mithril/mithril.js"></script>
 <script>
-    var root = document.body
 
-    // appel REST pour manipuler les entite
+var root = document.body
 
-		var Petition = {
-		    list: [],
-		    loadList: function() {
-		        return m.request({
-		            method: "GET",
-		            url: "https://my-cloud-project-232813.appspot.com/_ah/api/myApi/v1/petitions",
-		            withCredentials: true,
-		        })
-		        .then(function(result) {
-		        	Petition.list = result.items
-		        })
-		     
-		    },
-		   
-		}
-	    
-		var PetitionView = {
-		 		oninit: Petition.loadList,
-		 	    view: function() {
-		 	        return m(".user-list", Petition.list.map(function(pet) {
-		                return m("main", [
+var petition = {
+	    current: {},
+	    chercher: function() {
+	    	console.log("saving...",petition.current)
+	        return m.request({
+	            method: "POST",
+	            url: "https://my-cloud-project-232813.appspot.com/_ah/api/myApi/v1/mespetitions/"+petition.current.auteur
+	        })
+	        .then(function(result) {
+	        	console.log("got:",result)
+	        	petition.loadList()
+	        })
+	    }
+    }
 
-		 	    		m("div",{class: "card-title",style:"width: 18rem;"},pet.nom),
-		 	    		m("div",{class: "card-text"},pet.message),
-			 	    	m("div",{class: "card-title pricing-card-title"},"auteur :"+pet.auteur),
-			 	    	m("div",{class: "card-title pricing-card-title"},"id :"+pet.id),
-			 	       m("button", {class: "btn btn-primary", onclick: function() {  console.log("iciiiii")
-			 	    	   		return m.request({
-		           						method: "POST",
-		           						url: "https://my-cloud-project-232813.appspot.com/_ah/api/myApi/v1/signer/" + pet.id+ "/"+localStorage.getItem('userId'),    
-		    						})}}, "signer"),
-		 	    		 ])
-		 	        }))
-		 	    },
-		 } 
-	 var Hello = {
-	 	    view: function() {
-	 	    	return m("main", [
-                    m("header",
-                        m("nav.menu",
-                            m("ul",
-                                m("li", 
-                                    "un"),
-                                m("li", "deux")
-                            )
+m.render(root, [
+    m("header",{style: "color: blue"},[
+        m("nav", {class: "navbar navbar-default navbar-fixed-top" },
+            m("div", {class: "container-fluid" },
+                m('ul', {class: "nav navbar-nav" },
+                    m("li",
+                        m("a", {class: "navbar-brand", href: "accueil.html" , style: "color: blue"},
+                            m("strong", {class: "glyphicon glyphicon-globe", style: "color: blue"}),
+                            "TinyPet")
+                        ),
+                    m("li",
+                        m("a", {href: "/creerPetition.html"},
+                            m("span", {class: "glyphicon glyphicon-pencil", style: "color: blue"}),
+                            "lancer une petition")
+                        ),
+                    m("li",
+                        m("a", {href: "/MesPetitions.html"},
+                            m("span", {class: "glyphicon glyphicon-th-list", style: "color: blue"}),
+                            "Petitions que j'ai signe")
+                        ),
+                   
+                    )
+                )
+            ),
+        m("div",{class:"view intro-2"},
+            m("div",{class:"full-bg-img"},
+                m("div",{class:"mask rgba-black-light flex-center"},
+                    m("div",{class:"container text-center white-text"},
+                        m("div", {class:"white-text text-center wow fadeInUp"},
+                            m("h2",{style: "color: blue"},"Seul on va plus vite mais ensemble on va plus loin")
                         )
-                    ),
-	 	            m("a", {href:"connexion.html"}, "connexion"),
-	 	            m("a", {href:"poster.html"}, "Poster une petition"),
-					m("a", {href:"listePetition.html"}, "Liste des petitions"),
-					m("a", {href:"petitionUser.html"}, "Mes petitions"),
-	 	            m("h1", {class: "title"}, "Petitions récentes"),
-	 	            m("div", {id: "box"}, m(PetitionView)),
-	 	        ])
-	 	    }
-	 	}
+                    )
+                )
+            )
+        )
+        ]),
+         m("hr", {style: "color: blue"} ),
+        m("hr", {style: "color: blue"} ),
+         m("main", [
+            m("form", {class: "col-lg-4 col-lg-offset-4",
+                onsubmit: function(e) {
+	                    e.preventDefault()
+	                    petition.chercher()
+                    }
+                },
+                m("legend", "Votre nom"),
+                    m("label", "auteur"),
+                    m("input", { class: "form-control",
+	                    oninput: function (e) {petition.current.auteur=e.target.value},
+	                                value: petition.current.auteur
+	                    }),
+                    m("br"),
+                m("button", {type: "submit", class: "pull-right btn btn-primary"}, "chercher")
+            )
+	    ])
+])
 
- m.mount(document.body, Hello)	
-
-	</script>
+</script>
 </body>
 </html>

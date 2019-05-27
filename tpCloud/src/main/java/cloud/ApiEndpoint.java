@@ -55,9 +55,9 @@ public class ApiEndpoint {
 		}
 	}
 
-	@ApiMethod(name = "Mespetitions",
-			   path = "Mespetitions/{auteur}",
-			   httpMethod = HttpMethod.GET)
+	@ApiMethod(name = "mespetitions",
+			   path = "mespetitions/{auteur}",
+			   httpMethod = HttpMethod.POST)
     public Collection<Petition> list(@Named("auteur") String auteur) {
         List<Petition> petitions = ofy().load().type(Petition.class)
         							.filter("auteur", auteur).list();
