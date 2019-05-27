@@ -61,4 +61,6 @@ https://my-cloud-project-232813.appspot.com/_ah/api/myApi/v1/petitions
 
 
 Difficulté
+
+
 La connexion au compte utilisateur via l'adresse Google de la personne n'est pas effective.
