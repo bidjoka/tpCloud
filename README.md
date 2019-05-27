@@ -26,7 +26,7 @@ Installation
 Pour installer le projet, il faut avoir accès à Google App Engine, notre code source présent sur GitHub et une interface Rest.
 Voici les liens permettant d'avoir tous les accès.
 
-	Url App engine permettant d'utiliser l'application est : https://my-cloud-project-232813.appspot.com
+	Url App engine permettant d'utiliser l'application est : https://my-cloud-project-232813.appspot.com/accueil.html
 	Url github permettant de télécharger le code source est : https://github.com/bidjoka/tpCloud
 	Url permettant d'explorer l'interface REST est : https://my-cloud-project-232813.appspot.com/_ah/api/myApi/explorer
 
