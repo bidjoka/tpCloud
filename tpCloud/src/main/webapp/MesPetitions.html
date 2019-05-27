@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<title>Lancer votre pétition</title>
+<title>Vos pétitions</title>
 <style type="text/css">
 body { padding-top: 70px; padding-bottom:70px;}
 </style>
@@ -52,29 +52,31 @@ body { padding-top: 70px; padding-bottom:70px;}
 		 	        }))
 		 	    },
 		 } 
-	 var Hello = {
+	 var Affichage = {
 	 	    view: function() {
 	 	    	return m("main", [
                     m("header",
                         m("nav.menu",
                             m("ul",
-                                m("li", 
-                                    "un"),
-                                m("li", "deux")
+                            		m("li",
+                                             m("a", {class: "navbar-brand", href: "accueil.html" , style: "color: blue"},
+                                                 m("strong", {class: "glyphicon glyphicon-globe", style: "color: blue"}),
+                                                 "TinyPet")
+                                    ),
+                            		m("li", m("a", {href:"connexion.html"}, "Connexion"),),
+                            		m("li",m("a", {href:"creerPetition.html"}, "Poster une petition"),),
+                            		m("li",m("a", {href:"test2.html"}, "Liste des petitions"),),
+                            		m("li",m("a", {href:"MesPetitions.html"}, "Mes petitions"),),
                             )
                         )
                     ),
-	 	            m("a", {href:"connexion.html"}, "connexion"),
-	 	            m("a", {href:"poster.html"}, "Poster une petition"),
-					m("a", {href:"listePetition.html"}, "Liste des petitions"),
-					m("a", {href:"petitionUser.html"}, "Mes petitions"),
 	 	            m("h1", {class: "title"}, "Petitions récentes"),
 	 	            m("div", {id: "box"}, m(PetitionView)),
 	 	        ])
 	 	    }
 	 	}
 
- m.mount(document.body, Hello)	
+ m.mount(root, Affichage)	
 
 	</script>
 </body>

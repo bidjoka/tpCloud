@@ -1,20 +1,39 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-  <head>
-    <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
-    <title>Hello App Engine</title>
-  </head>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Tiny Pet</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+</head>
 
-  <body>
-    <h1>Hello App Engine!</h1>
+<body>
+  <script src="https://unpkg.com/mithril/mithril.js"></script>
+  <script>
+  
+  var root = document.body
+  
+  var Affichage = {
+        view: function() {
+          return m("main", [
+               m("h1", {class: "title"}, "Bienvenue sur Tiny Pet"),
+               m("p", "Voici la liste des fonctionnalités présentent sur notre site Tiny Pet."),
+               m("p", "Cliquez sur le premier lien pour retourner à la page d'accueil."),
+               m("li",[m("a", {href:"accueil.html"}, "Accueil du site TinyPet"),]),
+               m("li",[m("a", {href:"/connexion.html"}, "Connexion"),]),
+               m("li",[m("a", {href:"/creerPetition.html"}, "Création d'une pétition"),]),
+               m("li",[m("a", {href:"/MesPetitions.html"}, "Vos pétitions"),]),
+               m("li",[m("a", {href:"/topPetition.html"}, "Le top des pétitions"),]),
+               //m("li",[m("a", {href:"/modifierPetition.html"}, "Modification d'une pétition"),]),              
+               //m("a", {href:"listePetition.html"}, "Liste des petitions"),
+                
+            ])
+        }
+    }
+   
+  m.mount(root, Affichage)  
 
-    <table>
-      <tr>
-        <td colspan="2" style="font-weight:bold;">Available Servlets:</td>        
-      </tr>
-      <tr>
-        <td><a href='/hello'>The servlet</a></td>
-      </tr>
-    </table>
-  </body>
+  </script>
+  
+</body>
 </html>

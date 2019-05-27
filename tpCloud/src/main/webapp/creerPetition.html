@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="google-signin-client_id" content="645573598547-h18kns51ko3p9ja3ni909jbh79p4gfv4.apps.googleusercontent.com">
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<title>Lancer votre pétition</title>
+<title>Créer votre pétition</title>
 <style type="text/css">
 body { padding-top: 70px; padding-bottom:70px;}
 </style>
@@ -39,28 +40,28 @@ m.render(root, [
             m("div", {class: "container-fluid" },
                 m('ul', {class: "nav navbar-nav" },
                     m("li",
-                        m("a", {class: "navbar-brand", href: "#" , style: "color: blue"},
+                        m("a", {class: "navbar-brand", href: "accueil.html" , style: "color: blue"},
                             m("strong", {class: "glyphicon glyphicon-globe", style: "color: blue"}),
                             "TinyPet")
                         ),
                     m("li",
                         m("a", {href: "/creerPetition.html"},
                             m("span", {class: "glyphicon glyphicon-pencil", style: "color: blue"}),
-                            "lancer une pétition")
+                            "Créer une pétition")
                         ),
                     m("li",
-                        m("a", {href: "/comptePerso.html"},
+                        m("a", {href: "MesPetitions.html"},
                             m("span", {class: "glyphicon glyphicon-th-list", style: "color: blue"}),
                             "Mes pétitions")
                         ),
-                    m("li",
-                        m("a", {href: "#"},
+                   /* m("li",
+                        m("a", {href: "/topPetition.html"},
                             m("span", {class: "glyphicon glyphicon-thumbs-up", style: "color: blue"}),
-                            "top 100 pétitions")
-                        ),
+                            "Top 100 des pétitions")
+                        ),*/
                     m("li",
-                        m("a", {href: "#"},
-                            "déconnexion")
+                        m("a", {href: "/connexion.html"},
+                            "Se connecter")
                         )
                     )
                 )
@@ -86,18 +87,23 @@ m.render(root, [
                     }
                 },
                 m("legend", "Votre pétition"),
-                    m("label", "titre de la pétition"),
+                    m("label", "Titre de la pétition"),
                     m("input", { class: "form-control",
 	                    oninput: function (e) {petition.current.nom=e.target.value},
 	                                value: petition.current.nom
+                        }),
+                    m("label", "Auteur"),
+                    m("input", { class: "form-control",
+	                    oninput: function (e) {petition.current.auteur=e.target.value},
+	                                value: petition.current.auteur
 	                    }),
-                    m("label", "votre message"),
+                    m("label", "Votre message"),
                     m("textarea", { class: "form-control",
 	                    oninput: function (e) {petition.current.message=e.target.value},
 	                                value: petition.current.message
                     }),
                     m("br"),
-                m("button", {type: "submit", class: "pull-right btn btn-primary"}, "poster")
+                m("button", {type: "submit", class: "pull-right btn btn-primary"}, "Poster")
             )
 	    ])
 ])

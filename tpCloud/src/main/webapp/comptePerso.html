@@ -12,7 +12,9 @@
     <script src="https://unpkg.com/mithril/mithril.js"></script>
     <script>	
 
-        var MesPetition = {
+    var root = document.body
+    
+        var MesPetitions = {
             list: [],
             loadList: function() {
                 return m.request({
@@ -39,7 +41,7 @@
             }
         }
 
-        var affiche = {
+        var Affichage = {
 	    view: function() {
             return m("header",
                     m("nav", {class: "navbar fixed-top navbar-expand-lg navbar-dark indigo"},
@@ -49,13 +51,13 @@
                         m("div", {class: "collapse navbar-collapse"},
                             m("ul", {class: "navbar-nav mr-auto"},
                                 m("li", {class: "nav-item active"},
-                                    m("a", {class: "nav-link", href: "#"}, "lancer une pétition")
+                                    m("a", {class: "nav-link", href: "/creerPetition.html"}, "Créer pétition")
                                     ),
                                 m("li", {class: "nav-item"},
-                                    m("a", {class: "nav-link", href: "#"}, "pétitions populaires")
+                                    m("a", {class: "nav-link", href: "/topPetition.html"}, "Les pétitions populaires")
                                     ),
                                 m("li", {class: "nav-item"},
-                                    m("a", {class: "nav-link", href: "/accueil.html"}, "se déconnecter")
+                                    m("a", {class: "nav-link", href: "/accueil.html"}, "Se déconnecter")
                                     )
                                 )
                             )    
@@ -74,13 +76,13 @@
                 ),
                 m("main", [
 	            m("h1", {class: "title"}, "Créer votre pétition"),
-	            m("div", m(MesPetition))
+	            m("div", m(MesPetitions))
 	        ])
         }
 	}
 
 
-    m.mount(document.body, affiche)	
+    m.mount(root, Affichage)	
 
 </script>
 </div>
