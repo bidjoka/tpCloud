@@ -14,9 +14,10 @@ Réalisé par :
 
 Date : 20 mai 2019
 
-	La réalisation de Tiny Pet a été réalisé grâce au framework js Mithrill pour la partie interface, avec l'ajout du framework css bootstrap afin de rendre le tout plus agréable.
-	Pour la gestion de notre API, on a utiliser google cloud endpoints. notamment les annotations, @API et @ApiMethod
+	Nous avons réalisé Tiny Pet grâce au framework js Mithrill, avec l'ajout du framework css bootstrap pour la partie User Interface.
+	Pour la gestion de notre API, on a utiliser Google Cloud endpoints. notamment les annotations, @API et @ApiMethod
 	Pour rendre notre API en API REST, nous avons utiliser le framework objectify, cet ORM nous a permis notament de transformer les données issu en JSON du datastore en POJO java grâce à l'annotation @entity, de pourvoir profiter du cache grâce à l'annotation @cache, d'indexer nos propriétés grâce aux annotations @index et @id.
+	Pour l'authentification des utilisateurs on a utilisé  Gogle Account API, qui nous a permis de stocker dans le datastore les emails des utilisateurs google utilisant notre application.
 
 
 Installation
@@ -27,14 +28,8 @@ Voici les liens permettant d'avoir tous les accès.
 
 	Url App engine permettant d'utiliser l'application est : https://my-cloud-project-232813.appspot.com
 	Url github permettant de télécharger le code source est : https://github.com/bidjoka/tpCloud
-	Url permettant d'explorer l'interface REST est : https://my-cloud-project-232813.appspot.com/_ah/api/myApi/v1/
+	Url permettant d'explorer l'interface REST est : https://my-cloud-project-232813.appspot.com/_ah/api/myApi/explorer
 
-
-Exploration de l'API
-
-
-Pour explorer l'API, il faut la lancer le code sur la barre d'adresse d'un navigateur. 
-https://my-cloud-project-232813.appstpot.com/_ah/api/explorer
 
 Description du site de pétition
 
