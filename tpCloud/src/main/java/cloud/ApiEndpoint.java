@@ -46,13 +46,15 @@ public class ApiEndpoint {
 	@ApiMethod(name="utilisateur",
 			   path = "utilisateur",
 			   httpMethod = HttpMethod.POST)
-	public void Connexion() {
+	public String Connexion() {
+		String con = new String();
 		if (userService.getCurrentUser() == null) {
-			userService.createLoginURL("/comptePerso.html");
-			userService.getCurrentUser().getEmail();
+			userService.createLoginURL("/");
 		}else {
-			userService.createLogoutURL("/accueil.htm");
+			userService.createLogoutURL("/");
+			con = userService.getCurrentUser().getEmail();
 		}
+		return con;
 	}
 
 	@ApiMethod(name = "Mespetitions",
